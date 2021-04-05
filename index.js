@@ -1,6 +1,7 @@
 import { Plugin } from '@vizality/entities';
 import { getModule, FluxDispatcher } from '@vizality/webpack';
 import { forceUpdateElement } from '@vizality/util'
+import { patch, unpatch} from '@vizality/patcher'
 
 const TotalMembersComponent = require('./components/TotalMembers.jsx');
 
