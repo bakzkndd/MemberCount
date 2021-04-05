@@ -33,13 +33,23 @@ export default class MemberCount extends Plugin {
   }
 
   handleMemberListUpdate (update) {
-    if (update.id === 'everyone' || update.groups.find(g => g.id === 'online')) { // Figure out a better filter eventually
-      const online = update.groups
-        .map(group => group.id !== 'offline' ? group.count : 0)
-        .reduce((a, b) => (a + b), 0);
+    unpatch('member-counter');
+    patch('member-counter', ListThin, 'render', (args, res) => {
+      if (!args[0] || !args[0].id || !args[0].id.startsWith('members')) {
+        return res;
+      }
 
-      updatePresencesCount(update.guildId, online);
-    }
+      const id = getLastSelectedGuildId();
+      res.props.children = [
+        React.createElement(TotalMembersComponent, {
+          entityID: this.entityID,
+          guildId: id
+        }),
+        res.props.children
+      ];
+
+      return res;
+    });
   }
 
   stop () {
