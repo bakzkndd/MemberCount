@@ -17,10 +17,10 @@ export default class TotalMembers extends Component {
 	return (
 	  <div className={cls.filter(Boolean).join(' ')}>
 		<h2 className={`group ${classes.membersGroup} container-2ax-kl`}>
-          Total Members — {this.props.total.toLocaleString()}
+          Total Members — {this.props.total}
         </h2>
         <h2 className={`group ${classes.membersGroup} container-2ax-kl`}>
-          Online Members — {this.props.online.toLocaleString()}
+          Online Members — {this.props.online}
         </h2>
 	  </div>
 	);
