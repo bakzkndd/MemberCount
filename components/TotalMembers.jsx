@@ -32,7 +32,7 @@ export default class TotalMembers extends Component {
 const { store: countsStore } = require('../countStore.js');
 const memberStore = getModule([ 'getMemberCount' ], false);
 module.exports = Flux.connectStores(
-  [ countsStore, memberStore, powercord.api.settings.store ],
+  [ countsStore, memberStore ],
   (props) => ({
     online: props.guildId ? countsStore.getPresenceCount(props.guildId) : 69,
     total: props.guildId ? memberStore.getMemberCount(props.guildId) : 420
