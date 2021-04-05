@@ -30,11 +30,6 @@ export default class MemberCount extends Plugin {
     });
 
     FluxDispatcher.subscribe('GUILD_MEMBER_LIST_UPDATE', this.handleMemberListUpdate);
-    this.forceUpdateMembersList();
-  }
-
-  forceUpdateMembersList () {
-    forceUpdateElement(`.${getModule([ 'membersWrap' ], false).membersWrap}`);
   }
 
   handleMemberListUpdate (update) {
