@@ -1,5 +1,6 @@
 import { Plugin } from '@vizality/entities';
 import { getModule, FluxDispatcher } from '@vizality/webpack';
+import { forceUpdateElement } from '@vizality/util'
 
 const TotalMembersComponent = require('./components/TotalMembers.jsx');
 
@@ -28,6 +29,20 @@ export default class MemberCount extends Plugin {
 
     FluxDispatcher.subscribe('GUILD_MEMBER_LIST_UPDATE', this.handleMemberListUpdate);
     this.forceUpdateMembersList();
+  }
+
+  forceUpdateMembersList () {
+    forceUpdateElement(`.${getModule([ 'membersWrap' ], false).membersWrap}`);
+  }
+
+  handleMemberListUpdate (update) {
+    if (update.id === 'everyone' || update.groups.find(g => g.id === 'online')) { // Figure out a better filter eventually
+      const online = update.groups
+        .map(group => group.id !== 'offline' ? group.count : 0)
+        .reduce((a, b) => (a + b), 0);
+
+      updatePresencesCount(update.guildId, online);
+    }
   }
 
   stop () {
