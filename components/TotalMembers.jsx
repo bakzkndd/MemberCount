@@ -19,9 +19,6 @@ export default class TotalMembers extends Component {
 		<h2 className={`group ${classes.membersGroup} container-2ax-kl`}>
           Total Members — {this.props.total}
         </h2>
-        <h2 className={`group ${classes.membersGroup} container-2ax-kl`}>
-          Online Members — {this.props.online}
-        </h2>
 	  </div>
 	);
   }
@@ -29,12 +26,10 @@ export default class TotalMembers extends Component {
   
 }
 
-const { store: countsStore } = require('../countStore.js');
 const memberStore = getModule([ 'getMemberCount' ], false);
 module.exports = Flux.connectStores(
-  [ countsStore, memberStore ],
+  [ memberStore ],
   (props) => ({
-    online: props.guildId ? countsStore.getPresenceCount(props.guildId) : 69,
     total: props.guildId ? memberStore.getMemberCount(props.guildId) : 420
   })
 )(TotalMembers);
