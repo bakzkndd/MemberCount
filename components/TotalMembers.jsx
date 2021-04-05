@@ -29,7 +29,7 @@ export default class TotalMembers extends Component {
   
 }
 
-const { store: countsStore } = require('../countsStore');
+const { store: countsStore } = require('../countStore.js');
 const memberStore = getModule([ 'getMemberCount' ], false);
 module.exports = Flux.connectStores(
   [ countsStore, memberStore, powercord.api.settings.store ],
