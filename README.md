@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/50497725/121723087-60c8e700-cae6-11eb-8dfa-bc963e47231e.png)
+![banner](https://user-images.githubusercontent.com/50497725/121724165-c79ad000-cae7-11eb-8c68-6ff566961aa5.png)
 # MemberCount
  Shows a neat little member count at the top of the member list.
  
