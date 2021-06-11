@@ -1,4 +1,4 @@
-![image](https://www.figma.com/file/6RVgLqk6lpOvI1wIYsIQ9q/Vizality-Addon-Banner-Community-Community?node-id=0%3A1)
+![image](https://user-images.githubusercontent.com/50497725/121723087-60c8e700-cae6-11eb-8dfa-bc963e47231e.png)
 # MemberCount
  Shows a neat little member count at the top of the member list.
  
