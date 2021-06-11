@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getModule, Flux, FluxDispatcher } from '@vizality/webpack';
 
-const { requestMembers } = getModule([ 'requestMembers' ], false);
 const classes = {
 	...getModule([ 'membersGroup' ], false),
 	...getModule([ 'statusOnline' ], false)
