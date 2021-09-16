@@ -11,8 +11,9 @@ const { getLastSelectedGuildId } = getModule([ 'getLastSelectedGuildId' ], false
 export default class MemberCount extends Plugin {
   start () {
     this.handleMemberListUpdate = this.handleMemberListUpdate.bind(this);
+    
     patch('member-counter', ListThin, 'render', (args, res) => {
-      if (!args[0] || !args[0].id || !args[0].id.startsWith('members')) {
+      if (!args[0] || !args[0]['data-list-id'] || !args[0]['data-list-id'].startsWith('members')) {
         return res;
       }
 
@@ -34,7 +35,7 @@ export default class MemberCount extends Plugin {
   handleMemberListUpdate (update) {
     unpatch('member-counter');
     patch('member-counter', ListThin, 'render', (args, res) => {
-      if (!args[0] || !args[0].id || !args[0].id.startsWith('members')) {
+      if (!args[0] || !args[0]['data-list-id'] || !args[0]['data-list-id'].startsWith('members')) {
         return res;
       }
 
