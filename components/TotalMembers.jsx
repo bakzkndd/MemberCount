@@ -13,10 +13,11 @@ export default class TotalMembers extends Component {
 		'groups',
 		true && 'sticky'
 	];
+	const members = this.props.total == 0 ? "⌛ loading..." : this.props.total
 	return (
 	  <div className={cls.filter(Boolean).join(' ')}>
 		<h2 className={`group ${classes.membersGroup} container-2ax-kl`}>
-          Total Members — {this.props.total}
+          Total Members — {members}
         </h2>
 	  </div>
 	);
