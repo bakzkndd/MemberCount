@@ -13,6 +13,7 @@ const entityID = "Member-Counter-Component"
 export default class MemberCount extends Plugin {
   start () {
     this.handleMemberListUpdate = this.handleMemberListUpdate.bind(this);
+    this.injectStyles("./style.css")
     
     patch('member-counter', ListThin, 'render', (args, res) => {
       if (!args[0] || !args[0]['data-list-id'] || !args[0]['data-list-id'].startsWith('members')) {
@@ -57,6 +58,7 @@ export default class MemberCount extends Plugin {
   }
 
   stop () {
-	 
+    unpatch('member-counter');
+    FluxDispatcher.unsubscribe('GUILD_MEMBER_LIST_UPDATE', this.handleMemberListUpdate);
   }
 }
