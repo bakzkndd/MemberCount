@@ -8,6 +8,8 @@ const TotalMembersComponent = require('./components/TotalMembers.jsx');
 const { ListThin } = getModule([ 'ListThin' ], false);
 const { getLastSelectedGuildId } = getModule([ 'getLastSelectedGuildId' ], false);
 
+const entityID = "Member-Counter-Component"
+
 export default class MemberCount extends Plugin {
   start () {
     this.handleMemberListUpdate = this.handleMemberListUpdate.bind(this);
@@ -20,7 +22,7 @@ export default class MemberCount extends Plugin {
       const id = getLastSelectedGuildId();
       res.props.children = [
         React.createElement(TotalMembersComponent, {
-          entityID: this.entityID,
+          entityID: entityID,
           guildId: id
         }),
         res.props.children
@@ -39,10 +41,12 @@ export default class MemberCount extends Plugin {
         return res;
       }
 
+      res.props.children = res.props.children.filter(item => item?.props?.entityID != entityID)
+
       const id = getLastSelectedGuildId();
       res.props.children = [
         React.createElement(TotalMembersComponent, {
-          entityID: this.entityID,
+          entityID: entityID,
           guildId: id
         }),
         res.props.children
