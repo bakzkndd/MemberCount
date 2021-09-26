@@ -13,7 +13,7 @@ export default class TotalMembers extends Component {
       "groups",
       this.props.getSetting("sticky", false) && "sticky",
     ];
-    const members = this.props.total == 0 ? "⌛ loading..." : this.props.total;
+    const members = this.props.total == 0 ? "Loading..." : this.props.total;
     return (
       <div className={cls.filter(Boolean).join(" ")}>
         <h2 className={`group ${classes.membersGroup} container-2ax-kl`}>
