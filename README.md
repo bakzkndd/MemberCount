@@ -9,3 +9,6 @@
 # How to install:
 
 Vizality: Open a CMD/Powershell/Terminal/Gitbash window in the Plugin folder and use: git clone https://github.com/bakzkndd/MemberCount/
+
+# Support
+Join my discord server: https://discord.gg/dUc3rQX
