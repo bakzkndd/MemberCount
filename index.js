@@ -15,6 +15,9 @@ export default class MemberCount extends Plugin {
     this.handleMemberListUpdate = this.handleMemberListUpdate.bind(this);
     this.injectStyles("./style.css");
 
+    this.guildId = getLastSelectedGuildId();
+    this.memberCount = 0;
+
     patch("member-counter", ListThin, "render", (args, res) => {
       if (
         !args[0] ||
@@ -24,11 +27,10 @@ export default class MemberCount extends Plugin {
         return res;
       }
 
-      const id = getLastSelectedGuildId();
       res.props.children = [
         React.createElement(TotalMembersComponent(this.settings.get), {
           entityID: entityID,
-          guildId: id,
+          guildId: this.guildId,
         }),
         res.props.children,
       ];
@@ -43,7 +45,18 @@ export default class MemberCount extends Plugin {
   }
 
   handleMemberListUpdate(update) {
+    if (update.guildId != getLastSelectedGuildId()) return;
+    if (
+      this.guildId == getLastSelectedGuildId() &&
+      this.memberCount == update.memberCount
+    )
+      return;
+
     unpatch("member-counter");
+
+    this.guildId = getLastSelectedGuildId();
+    this.memberCount = update.memberCount;
+
     patch("member-counter", ListThin, "render", (args, res) => {
       if (
         !args[0] ||

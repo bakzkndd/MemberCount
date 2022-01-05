@@ -1,5 +1,5 @@
 import React, { Component, memo } from "react";
-import { getModule, Flux, FluxDispatcher } from "@vizality/webpack";
+import { getModule, Flux } from "@vizality/webpack";
 
 const classes = {
   ...getModule(["membersGroup"], false),
