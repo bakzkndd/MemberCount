@@ -16,7 +16,7 @@ export default class TotalMembers extends Component {
     const members = this.props.total == 0 ? "Loading..." : this.props.total;
     return (
       <div className={cls.filter(Boolean).join(" ")}>
-        <h2 className={`group ${classes.membersGroup} container-2ax-kl`}>
+        <h2 className={`group ${classes.membersGroup} container-q97qHp`}>
           Total Members — {members}
         </h2>
       </div>
